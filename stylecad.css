@@ -1,0 +1,168 @@
+/* Reset e fontes padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Fundo azul claro da página */
+  body {
+    background-color: #c6d9f9;
+  }
+  
+  /* Cabeçalho */
+  header {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Logo e texto "SERENE" */
+  .logo {
+    height: 50px;
+  }
+  
+  .logo img {
+    width: 200px;
+    height: auto;
+  }
+  
+  .logo span {
+    font-size: 24px;
+    color: #0c3d75;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  
+  /* Menu de navegação */
+  nav {
+    margin-right: 40px;
+  }
+  
+  nav a {
+    margin-left: 30px;
+    text-decoration: none;
+    color: #0c3d75;
+    font-size: 22px;
+  }
+  
+  /* Container central */
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+  }
+  
+  /* Cartão do formulário */
+  .card {
+    background-color: #e9f0ff;
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    position: relative;
+    width: 350px;
+    text-align: center;
+  }
+  
+  /* Círculo do usuário no topo do card */
+  .profile-circle {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #d9e7ff;
+    border: 2px solid white;
+  }
+  
+  /* Abas de entrada/cadastro */
+  .tabs {
+    display: flex;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    overflow: hidden; /* garante que os botões se ajustem ao container arredondado */
+    width: 100%;
+  }
+  
+  .tabs button,
+  .tabs a {
+    flex: 1;
+    padding: 10px 0;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+  }
+  
+  /* Botão ativo */
+  .tabs .active {
+    background-color: #508be0;
+    color: white;
+  }
+  
+  /* Botão inativo */
+  .tabs .inactive {
+    background-color: #a7c2f5;
+    color: white;
+  }
+
+  
+  /* Título de boas-vindas */
+  .welcome {
+    font-size: 20px;
+    color: #1e58a4;
+    margin-bottom: 15px;
+  }
+  
+  /* Grupo de inputs com ícones */
+  .input-group {
+    background-color: #bcd1f0;
+    margin: 10px 0;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+  }
+  
+  .input-group img {
+    width: 24px;
+    margin-right: 10px;
+  }
+  
+  .input-group input {
+    border: none;
+    outline: none;
+    background: none;
+    color: white;
+    font-size: 16px;
+    width: 100%;
+  }
+  
+  /* Botão padrão (Login ou Cadastrar) */
+  .login-btn {
+    margin-top: 15px;
+    background-color: #508be0;
+    border: none;
+    padding: 12px 0;
+    color: white;
+    width: 100%;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  /* Para o link parecer botão */
+.tab-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 18px;
+    height: 40px;
+  }
