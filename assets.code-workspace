@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "assets",
+			"path": "../serene-app/assets"
+		},
+		{
+			"name": "serene-ds",
+			"path": "."
+		}
+	],
+	"settings": {}
+}

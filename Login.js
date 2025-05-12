@@ -43,10 +43,12 @@ const Login = ({ navigation }) => {
           <Text style={styles.rememberText}>Lembrar-me</Text>
         </View>
 
-        <TouchableOpacity style={styles.loginButton}>
+        <TouchableOpacity 
+          style={styles.loginButton}
+          onPress={() => navigation.navigate('Menu')}>
           <Text style={styles.loginButtonText}>LOGIN</Text>
         </TouchableOpacity>
-
+        
         <TouchableOpacity>
           <Text style={styles.forgotPassword}>Esqueci minha senha</Text>
         </TouchableOpacity>

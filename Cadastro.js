@@ -59,7 +59,9 @@ const Cadastro = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity style={styles.registerButton}>
+        <TouchableOpacity 
+          style={styles.registerButton}
+          onPress={() => navigation.navigate('Menu')}>
           <Text style={styles.registerButtonText}>CADASTRAR</Text>
         </TouchableOpacity>
       </View>
