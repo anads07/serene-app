@@ -7,38 +7,43 @@ import {
   Image,
   TouchableOpacity,
   StyleSheet,
-  Dimensions
+  Dimensions,
+  ImageBackground
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const App = () => {
+const App = ({ navigation }) => {
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        {/* Cabeçalho */}
-        <View style={styles.header}>
-          <Text style={styles.headerTitle}>Diário emocional</Text>
-          <TouchableOpacity>
-            <Image
-              source={require('./assets/perfil.png')}
-              style={styles.avatarIcon}
-            />
-          </TouchableOpacity>
-        </View>
-
+    <LinearGradient
+      colors={['#D6EBFF', '#a2caff']}
+      style={styles.gradient}
+    >
+      <SafeAreaView style={styles.safeArea}>
         <ScrollView contentContainerStyle={styles.scrollContent}>
+          {/* Cabeçalho */}
+          <View style={styles.header}>
+            <Text style={styles.headerTitle}>Diário emocional</Text>
+            <TouchableOpacity>
+              <Image
+                source={require('./assets/perfil.png')}
+                style={styles.avatarIcon}
+              />
+            </TouchableOpacity>
+          </View>
+
           {/* Imagem Central */}
           <Image
             source={require('./assets/diario.png')}
             style={styles.centralImage}
           />
 
-          {/* Botões Principais */}
-          <View style={styles.buttonsContainer}>
+          {/* Botões Principais - Agora como balões grudados */}
+          <View style={styles.balloonContainer}>
             {[
-              { icon: require('./assets/diariodia.png'), text: 'Diário do dia', color: '#afcdf2' },
+              { icon: require('./assets/diariododia.png'), text: 'Diário do dia', color: '#afcdf2' },
               { icon: require('./assets/registre.png'), text: 'Registre suas emoções', color: '#96bef0' },
               { icon: require('./assets/relatorio.png'), text: 'Relatório semanal', color: '#7bb0ea' },
               { icon: require('./assets/calendario.png'), text: 'Calendário com emoções', color: '#64a1e6' }
@@ -46,152 +51,142 @@ const App = () => {
               <TouchableOpacity
                 key={index}
                 style={[
-                  styles.mainButton,
+                  styles.balloonButton,
                   { backgroundColor: item.color },
-                  index === 0 && styles.topButton,
-                  index === 3 && styles.bottomButton
+                  index === 3 && styles.lastBalloon
                 ]}
                 activeOpacity={0.8}
               >
-                <Image source={item.icon} style={styles.whiteButtonIcon} />
-                <Text style={styles.whiteButtonText}>{item.text}</Text>
+                <Image source={item.icon} style={styles.balloonIcon} />
+                <Text style={styles.balloonText}>{item.text}</Text>
               </TouchableOpacity>
             ))}
           </View>
         </ScrollView>
 
-        {/* Menu Inferior Fixo */}
+        {/* Footer fixo */}
         <View style={styles.footer}>
-                <TouchableOpacity style={styles.footerItem} onPress={() => navigation.navigate('Menu')}>
-                  <Image source={require('./assets/menu.png')} style={styles.footerIcon} />
-                  <Text style={styles.footerText}>MENU</Text>
-                </TouchableOpacity>
-        
-                <TouchableOpacity style={styles.footerItem} onPress={() => navigation.navigate('Registro')}>
-                  <Image source={require('./assets/registro.png')} style={styles.footerIcon} />
-                  <Text style={styles.footerText}>REGISTRO</Text>
-                </TouchableOpacity>
-        
-                <TouchableOpacity style={styles.footerItem} onPress={() => navigation.navigate('Sugestoes')}>
-                  <Image source={require('./assets/sugestões.png')} style={styles.footerIcon} />
-                  <Text style={styles.footerText}>SUGESTÕES</Text>
-                </TouchableOpacity>
-        
-                <TouchableOpacity style={styles.footerItem} onPress={() => navigation.navigate('Chat')}>
-                  <Image source={require('./assets/chat.png')} style={styles.footerIcon} />
-                  <Text style={styles.footerText}>CHAT</Text>
-                </TouchableOpacity>
-              </View>
-      </View>
-    </SafeAreaView>
+          <TouchableOpacity style={styles.footerItem} onPress={() => navigation.navigate('Menu')}>
+            <Image source={require('./assets/menu.png')} style={styles.footerIcon} />
+            <Text style={styles.footerText}>MENU</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.footerItem} onPress={() => navigation.navigate('Registro')}>
+            <Image source={require('./assets/registro.png')} style={styles.footerIcon} />
+            <Text style={styles.footerText}>REGISTRO</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.footerItem} onPress={() => navigation.navigate('Sugestoes')}>
+            <Image source={require('./assets/sugestões.png')} style={styles.footerIcon} />
+            <Text style={styles.footerText}>SUGESTÕES</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.footerItem} onPress={() => navigation.navigate('Chat')}>
+            <Image source={require('./assets/chat.png')} style={styles.footerIcon} />
+            <Text style={styles.footerText}>CHAT</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    position: 'relative'
+  },
+  gradient: {
+    flex: 1,
+    paddingBottom: 1 
+  },
   safeArea: {
     flex: 1,
-    backgroundColor: '#D6EBFF',
-  },
-  container: {
-    flex: 1,
-    position: 'relative',
-  },
-  scrollContent: {
-    paddingBottom: 100,
+    justifyContent: 'flex-start' // Alinha conteúdo no topo
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingTop: 20,
-    paddingBottom: 10,
-    backgroundColor: '#D6EBFF',
+    padding: 20,
+    paddingBottom: 10
   },
   headerTitle: {
-    fontFamily: 'Josefin Sans',
-    fontSize: 32,
-    textAlign: 'center',
-    flex: 1,
-    color: 'white',
+    fontSize: 28,
     fontWeight: 'bold',
+    color: '#0c4793',
+    flex: 1,
+    textAlign: 'center'
   },
   avatarIcon: {
-    width: 35,
-    height: 35,
-    borderRadius: 1,
+    width: 40,
+    height: 40,
+    borderRadius: 20
   },
   centralImage: {
-    width: windowWidth * 0.6,
-    height: windowWidth * 0.6,
+    width: windowWidth * 0.4,
+    height: windowWidth * 0.4,
     resizeMode: 'contain',
     alignSelf: 'center',
     marginVertical: 20,
   },
-  buttonsContainer: {
-    alignItems: 'center',
-    paddingHorizontal: windowWidth * 0.05,
+  balloonContainer: {
+    marginHorizontal: 20,
+    marginTop: 10,
+    marginBottom: 30,
+    borderRadius: 25,
+    overflow: 'hidden',
   },
-  mainButton: {
+  balloonButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-start',
-    width: '100%',
-    paddingVertical: windowHeight * 0.025,
-    paddingHorizontal: windowWidth * 0.05,
-    marginBottom: 1,
-    borderRadius: 25,
+    paddingVertical: 20,
+    paddingHorizontal: 25,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(255,255,255,0.3)',
   },
-  topButton: {
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
+  lastBalloon: {
+    borderBottomWidth: 0,
   },
-  bottomButton: {
-    borderBottomLeftRadius: 25,
-    borderBottomRightRadius: 25,
-    marginBottom: windowHeight * 0.02,
-  },
-  whiteButtonIcon: {
-    width: windowWidth * 0.08,
-    height: windowWidth * 0.08,
-    resizeMode: 'contain',
-    tintColor: 'white',
+  balloonIcon: {
+    width: 40,
+    height: 40,
     marginRight: 15,
   },
-  whiteButtonText: {
-    fontSize: windowWidth * 0.045,
+  balloonText: {
+    fontSize: 18,
     color: 'white',
     fontFamily: 'Josefin Sans-Regular',
-    flexShrink: 1,
+    fontWeight: 'bold',
   },
   footer: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    height: 80,
+    height: 60,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: '#a2caff',
     borderTopWidth: 1,
-    borderTopColor: '#1C86EE',
-    paddingVertical: 15,
+    borderTopColor: '#1C86EE'
   },
   footerItem: {
     alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1
   },
   footerIcon: {
-    width: 30,
-    height: 30,
-    marginBottom: 5,
+    width: 38,
+    height: 38,
+    marginBottom: 2
   },
   footerText: {
-    fontFamily: 'BebasNeue-Regular',
-    fontSize: 16,
+    fontSize: 12,
     color: 'white',
-    textTransform: 'uppercase',
-  },
+    fontWeight: 'bold'
+  }
 });
 
 export default App;
